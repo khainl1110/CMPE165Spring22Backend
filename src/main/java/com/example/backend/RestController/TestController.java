@@ -12,6 +12,6 @@ public class TestController {
     
     @GetMapping("/")
     public User getMapping() {
-        return new User("khainl1110", "haha");
+        return new User("matthew", "hello");
     }
 }
