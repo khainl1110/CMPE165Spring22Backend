@@ -7,24 +7,56 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 	private ArrayList<User> tempStorage = new ArrayList<>();
 	
-    @GetMapping("/display")
+	@GetMapping("")
     public List<User> getMapping() {
         return tempStorage;
     }
    
-    @PostMapping("/register")
+    @PostMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public String registerUser(@RequestBody User newUser) {
+    public User registerUser(@RequestBody User newUser, @PathVariable("id") int id) {
     	for (User u: tempStorage) {
     		if (u.equals(newUser)) {
-    			return "Username exists already, please try again.";
+    			return null;
     		}
     	}
+    	newUser.setID(id);
     	tempStorage.add(newUser);
-    	return "User created.";
+    	return newUser;
+    }
+    
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus deleteUser(@PathVariable("id") int id) {
+    	for (int i = 0; i < tempStorage.size(); i ++) {
+    		if (tempStorage.get(i).getID() == id) {
+    			tempStorage.remove(i);
+    			return HttpStatus.OK;
+    		}
+    	}
+    	return HttpStatus.PRECONDITION_FAILED;
+    }
+    
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public User updateRegister(@RequestBody User updatedUser, @PathVariable("id") int id) {
+    	//just in case they are being sneaky and try to change email or username to a prexisting user
+    	for (User u: tempStorage) {
+    		if (u.getEmail().equals(updatedUser.getEmail()) || u.getUsername().equals(updatedUser.getUsername())) {
+    			return null;
+    		}
+    	}
+    	
+    	for (int i = 0; i < tempStorage.size(); i ++) {
+    		if (tempStorage.get(i).getID() == id) {
+    			tempStorage.get(i).update(updatedUser);
+    			return tempStorage.get(i);
+    		}
+    	}
+    	return null;
     }
 }
