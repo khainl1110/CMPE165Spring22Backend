@@ -5,6 +5,7 @@ import java.util.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+// merged, but still need to revise later
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/users")
@@ -16,6 +17,8 @@ public class UserController {
         return tempStorage;
     }
    
+	// create a new user, will change so that id is automatically generated 
+	// because cannot create id before creating the user
     @PostMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public User registerUser(@RequestBody User newUser, @PathVariable("id") int id) {
@@ -46,6 +49,7 @@ public class UserController {
     public User updateRegister(@RequestBody User updatedUser, @PathVariable("id") int id) {
     	//just in case they are being sneaky and try to change email or username to a prexisting user
     	for (User u: tempStorage) {
+			// what if they only want to change email or username?
     		if (u.getEmail().equals(updatedUser.getEmail()) || u.getUsername().equals(updatedUser.getUsername())) {
     			return null;
     		}
