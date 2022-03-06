@@ -1,66 +1,74 @@
 package com.example.backend.RestController;
 
 import com.example.backend.Model.User;
+import com.example.backend.Repository.UserRepository;
+
 import java.util.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-// merged, but still need to revise later
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/users")
 public class UserController {
-	private ArrayList<User> tempStorage = new ArrayList<>();
+	
+	
+	@Autowired
+	UserRepository repo;
 	
 	@GetMapping("")
-    public List<User> getMapping() {
-        return tempStorage;
+    public Iterable<User> getMapping() {
+        return repo.findAll();
     }
    
-	// create a new user, will change so that id is automatically generated 
-	// because cannot create id before creating the user
-    @PostMapping("/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public User registerUser(@RequestBody User newUser, @PathVariable("id") int id) {
-    	for (User u: tempStorage) {
-    		if (u.equals(newUser)) {
-    			return null;
-    		}
-    	}
-    	newUser.setID(id);
-    	tempStorage.add(newUser);
-    	return newUser;
+	@GetMapping("/{id}")
+	public User getUser(@PathVariable("id") Long id) {
+		Optional<User> data = repo.findById(id);
+		return data.get();
+	}
+
+	// create new user
+    @PostMapping()
+    public User registerUser(@RequestBody User user) {
+    	// first need to check whether there's existing username or not
+    	User temp = repo.findByUsername(user.getUsername());
+    	// will look into how to return http code instead
+    	// but for now will return the same user
+    	if(temp != null)
+    		return temp;
+    	else {
+    		repo.save(user);
+        	return user;
+    	}	
+    	
+    }
+    
+    // find user by username
+    // guide: https://stackoverflow.com/questions/27066437/how-to-see-result-of-findbyusername-delievered-by-crudrepository
+    @GetMapping("/find")
+    public User findByUsername(@RequestParam("username") String username) {
+    	return repo.findByUsername(username);
+    }
+    
+    // update existing user
+    @PutMapping()
+    public User updateRegister(@RequestBody User updatedUser) {
+    	Optional<User> data = repo.findById(updatedUser.getId());
+    	User user = data.get();
+    	user.setUsername(updatedUser.getUsername());
+    	user.setPassword(updatedUser.getPassword());
+    	user.setEmail(updatedUser.getEmail());
+    	
+    	return repo.save(user);
     }
     
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public HttpStatus deleteUser(@PathVariable("id") int id) {
-    	for (int i = 0; i < tempStorage.size(); i ++) {
-    		if (tempStorage.get(i).getID() == id) {
-    			tempStorage.remove(i);
-    			return HttpStatus.OK;
-    		}
-    	}
-    	return HttpStatus.PRECONDITION_FAILED;
+    public String deleteUser(@PathVariable("id") Long id) {
+    	repo.deleteById(id);
+    	return "delete";
     }
     
-    @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public User updateRegister(@RequestBody User updatedUser, @PathVariable("id") int id) {
-    	//just in case they are being sneaky and try to change email or username to a prexisting user
-    	for (User u: tempStorage) {
-			// what if they only want to change email or username?
-    		if (u.getEmail().equals(updatedUser.getEmail()) || u.getUsername().equals(updatedUser.getUsername())) {
-    			return null;
-    		}
-    	}
-    	
-    	for (int i = 0; i < tempStorage.size(); i ++) {
-    		if (tempStorage.get(i).getID() == id) {
-    			tempStorage.get(i).update(updatedUser);
-    			return tempStorage.get(i);
-    		}
-    	}
-    	return null;
-    }
+    
 }
