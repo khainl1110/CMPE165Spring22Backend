@@ -32,11 +32,27 @@ public class UserController {
 	// create new user
     @PostMapping()
     public User registerUser(@RequestBody User user) {
-    	repo.save(user);
-    	return user;
+    	// first need to check whether there's existing username or not
+    	User temp = repo.findByUsername(user.getUsername());
+    	// will look into how to return http code instead
+    	// but for now will return the same user
+    	if(temp != null)
+    		return temp;
+    	else {
+    		repo.save(user);
+        	return user;
+    	}	
     	
     }
     
+    // find user by username
+    // guide: https://stackoverflow.com/questions/27066437/how-to-see-result-of-findbyusername-delievered-by-crudrepository
+    @GetMapping("/find")
+    public User findByUsername(@RequestParam("username") String username) {
+    	return repo.findByUsername(username);
+    }
+    
+    // update existing user
     @PutMapping()
     public User updateRegister(@RequestBody User updatedUser) {
     	Optional<User> data = repo.findById(updatedUser.getId());
