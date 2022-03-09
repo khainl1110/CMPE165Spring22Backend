@@ -4,7 +4,6 @@ import com.example.backend.Model.User;
 import com.example.backend.Repository.UserRepository;
 
 import java.util.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
