@@ -49,6 +49,10 @@ public class City {
 		this.lon = lon;
 	}
 	
+	public static void addCity(String name, double lat, double lon) {
+		list.add(new City(name, lat, lon));
+	}
+	
 	public static City findNearest(double lat, double lon) {
 		double min = Double.MAX_VALUE;
 		City minCity = null;
