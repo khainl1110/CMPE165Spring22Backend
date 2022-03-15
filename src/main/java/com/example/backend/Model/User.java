@@ -7,9 +7,9 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String username;
+	
+    private String firstName;
+    private String lastName;
     private String password;
     private String email;
 
@@ -17,42 +17,42 @@ public class User {
 
     }
 
-    public User(String username, int userID, String email, String password) {
-        this.username = username;
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.password = password;
         this.email = email;
     }
 
-    public Long getId() {
-    	return this.id;
-    }
-    
     public String getPassword() {
         return password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getFirstName() {
+        return firstName;
+    }
+    
+    public String getLastName() {
+        return lastName;
     }
     
     public String getEmail() {
         return email;
-    }
-
-    public void setId(Long id) {
-    	this.id = id;
     }
     
     public void setPassword(String password) {
         this.password = password;
     }
     
-    public void setUsername(String username) {
-        this.username = username;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
     
     public void setEmail(String email) {
     	this.email = email;
     }
-    
 }
