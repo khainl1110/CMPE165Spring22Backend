@@ -7,7 +7,10 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
+<<<<<<< HEAD:src/main/java/com/example/backend/Model/User.java
 	
+=======
+>>>>>>> abba5a3257baa01201b85cb24a6cc7e98948737b:src/main/java/com/example/backend/Model/Customer.java
     private String username;
     private String password;
     private String email;
