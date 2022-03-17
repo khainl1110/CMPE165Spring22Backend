@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 //CrudRepo will inherit several methods for finding reservation, saving, and delete
 public interface ReservationRepository extends CrudRepository<Reservation, Long> {
     //can define our own methods here
-    Reservation findByUserEmail(String userEmail);
+    Iterable<Reservation> findByUserEmail(String userEmail);
 
 }
