@@ -7,20 +7,23 @@ import javax.persistence.Id;
 
 @Entity
 public class Reservation {
+	
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private int roomID; //point to room
-	private String customerEmail;
+	private String userEmail; // point to user's email
 	
 	public Reservation() {
 		
 	}
 	
 	public Reservation(String email, int id) {
-		customerEmail = email;
+		userEmail = email;
 		roomID = id;
 	}
 	
 	public String getEmail() {
-		return customerEmail;
+		return userEmail;
 	}
 	
 	public int getID() {
@@ -28,7 +31,7 @@ public class Reservation {
 	}
 	
 	public void setEmail(String email) {
-		customerEmail = email;
+		userEmail = email;
 	}
 	
 	public void setID(int id) {

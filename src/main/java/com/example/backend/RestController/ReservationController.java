@@ -1,10 +1,13 @@
 package com.example.backend.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.backend.Model.Reservation;
+import com.example.backend.Repository.ReservationRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,14 +20,22 @@ public class ReservationController {
 
     @Autowired
     private ReservationService reservationService;
+    
+    @Autowired ReservationRepository reserRepo;
 
     //Retrieve all reservations
-    @RequestMapping(value = "/reservation", method = RequestMethod.GET)
-    public List getAllReservation() {
-		return reservationService.getAllReservation();
+    @GetMapping("")
+    public Iterable<Reservation> getAll() {
+    	return reserRepo.findAll();
     }
 
-    //Retrive a reservation
+    //Retrieve a reservation
+    @GetMapping("/{id}")
+    public Reservation getReservation(@PathVariable Long id) {
+    	Optional<Reservation> data = reserRepo.findById(id);
+    	return data.get();
+    }
+    
     @RequestMapping(value = "/reservations/{id}", method = RequestMethod.GET)
 	public Reservation getReservation(@PathVariable String id) {
 		return reservationService.getReservation(id);
