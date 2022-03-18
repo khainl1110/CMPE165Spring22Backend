@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Room {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private boolean status; //completed/cancelled, booked
+	private boolean isBooked; //completed/cancelled, booked
 	private String hotelName;
 	private int rating; //1-5 stars
 	
@@ -17,9 +17,9 @@ public class Room {
 		
 	}
 	
-	public Room(Long id, boolean status, String hotelName, int rating) {
+	public Room(Long id, boolean isBooked, String hotelName, int rating) {
 		this.id = id;
-		this.status = status;
+		this.isBooked = isBooked;
 		this.hotelName = hotelName;
 		this.rating = rating;
 	}
@@ -28,11 +28,11 @@ public class Room {
 		return id;
 	}
 	
-	public boolean getStatus() {
-		return status;
+	public boolean getIsBooked() {
+		return isBooked;
 	}
 	
-	public String getName() {
+	public String getHotelName() {
 		return hotelName;
 	}
 	
@@ -40,19 +40,15 @@ public class Room {
 		return rating;
 	}
 	
-	public void setID(Long id) {
-		this.id = id;
-	}
-	
-	public void setStatus(boolean status) {
-		this.status = status; //true = booked, false = canceled/completed
+	public void setIsBooked(boolean isBooked) {
+		this.isBooked = isBooked; //true = booked, false = canceled/completed
 	}
 	
 	public void toggleStatus() {
-		status = !status;
+		isBooked = !isBooked;
 	}
 	
-	public void setName(String hotelName) {
+	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
 	}
 	
