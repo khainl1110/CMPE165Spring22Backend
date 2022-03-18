@@ -7,31 +7,41 @@ import javax.persistence.Id;
 
 @Entity
 public class Reservation {
-	private int roomID; //point to room
-	private String customerEmail;
 	
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+	private long roomId; //point to room
+	private String userEmail; // point to user's email
+
 	public Reservation() {
 		
 	}
 	
-	public Reservation(String email, int id) {
-		customerEmail = email;
-		roomID = id;
+
+	public Reservation(String email, long id) {
+		userEmail = email;
+		roomId = id;
 	}
 	
-	public String getEmail() {
-		return customerEmail;
+	// need this so JPA can automatically create id
+	public long getId() {
+		return id;
 	}
 	
-	public int getID() {
-		return roomID;
+	public String getUserEmail() {
+		return userEmail;
 	}
 	
-	public void setEmail(String email) {
-		customerEmail = email;
+	// for some reason long is lowercase?
+	public long getRoomId() {
+		return roomId;
 	}
 	
-	public void setID(int id) {
-		roomID = id;
+	public void setUserEmail(String email) {
+		userEmail = email;
+	}
+	
+	public void setRoomId(long roomId) {
+		this.roomId = roomId;
 	}
 }
