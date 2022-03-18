@@ -37,24 +37,6 @@ public class ReservationController {
     	return data.get();
     }
     
-
-    // test method
-    @PostMapping("/t")
-    public long testRe(@RequestBody Reservation reservation) {
-    	return reservation.getroomId();
-    }
-    
-    // test method1
-    @PostMapping("/t1")
-    public String testRe1(@RequestBody Reservation reservation) {
-    	return reservation.getUserEmail();
-    }
-    
-    // test method2
-    @PostMapping("/t2")
-    public Reservation testRe2(@RequestBody Reservation reservation) {
-    	return reservation;
-    }
     //Create a reservation
     @PostMapping()
     public Reservation addReservation(@RequestBody Reservation reservation) {
@@ -67,7 +49,7 @@ public class ReservationController {
     	Optional<Reservation> data = repo.findById(id);
     	Reservation reser = data.get();
     	reser.setUserEmail(reservation.getUserEmail());
-    	reser.setroomId(reservation.getroomId());
+    	reser.setRoomId(reservation.getRoomId());
     	
     	return repo.save(reser);
     }
@@ -81,6 +63,7 @@ public class ReservationController {
     
     // find reservation by email
     // guide: https://stackoverflow.com/questions/27066437/how-to-see-result-of-findbyusername-delievered-by-crudrepository
+    // url: localhost:8080/reservation/find?userEmail=[email]
     @GetMapping("/find")
     public Iterable<Reservation> findByUsername(@RequestParam("userEmail") String username) {
     	return repo.findByUserEmail(username);

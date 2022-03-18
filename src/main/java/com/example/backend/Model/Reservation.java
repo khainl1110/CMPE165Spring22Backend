@@ -12,28 +12,11 @@ public class Reservation {
 	private long id;
 	private long roomId; //point to room
 	private String userEmail; // point to user's email
-	private long tLong;
-	private String tString;
 
 	public Reservation() {
 		
 	}
 	
-	public long gettLong() {
-		return tLong;
-	}
-
-	public void settLong(long tLong) {
-		this.tLong = tLong;
-	}
-
-	public String gettString() {
-		return tString;
-	}
-
-	public void settString(String tString) {
-		this.tString = tString;
-	}
 
 	public Reservation(String email, long id) {
 		userEmail = email;
@@ -50,7 +33,7 @@ public class Reservation {
 	}
 	
 	// for some reason long is lowercase?
-	public long getroomId() {
+	public long getRoomId() {
 		return roomId;
 	}
 	
@@ -58,7 +41,7 @@ public class Reservation {
 		userEmail = email;
 	}
 	
-	public void setroomId(long roomId) {
+	public void setRoomId(long roomId) {
 		this.roomId = roomId;
 	}
 }
