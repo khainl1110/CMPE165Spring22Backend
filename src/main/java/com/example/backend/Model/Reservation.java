@@ -32,7 +32,6 @@ public class Reservation {
 		return userEmail;
 	}
 	
-	// for some reason long is lowercase?
 	public long getRoomId() {
 		return roomId;
 	}

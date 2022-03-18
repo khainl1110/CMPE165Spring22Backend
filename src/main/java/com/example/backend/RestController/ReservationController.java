@@ -2,6 +2,7 @@ package com.example.backend.RestController;
 
 import java.util.Optional;
 
+import com.example.backend.Model.Message;
 import com.example.backend.Model.Reservation;
 import com.example.backend.Model.User;
 import com.example.backend.Repository.ReservationRepository;
@@ -56,9 +57,9 @@ public class ReservationController {
     
     // Delete reservation
     @DeleteMapping("/{id}")
-    public String updateReservation(@PathVariable long id) {
+    public Message updateReservation(@PathVariable long id) {
     	repo.deleteById(id);
-    	return "delete";
+    	return new Message("Reservation delete");
     }
     
     // find reservation by email
