@@ -2,6 +2,9 @@ package com.example.backend.RestController;
 
 import java.util.Optional;
 
+import javax.annotation.PostConstruct;
+
+import com.example.backend.Model.LoadRoom;
 import com.example.backend.Model.Message;
 import com.example.backend.Model.Room;
 import com.example.backend.Repository.RoomRepository;
@@ -24,6 +27,13 @@ public class RoomController {
 
     @Autowired RoomRepository repo;
 
+    @PostConstruct
+    private void loadRoom() {
+    	LoadRoom loadRoom = new LoadRoom();
+    	repo.saveAll(LoadRoom.getRooms());
+    }
+    
+    
     //get all the rooms
     @GetMapping("")
     public Iterable<Room> getAll() {
@@ -46,11 +56,15 @@ public class RoomController {
     //Update room
     @PutMapping("/{id}")
     public Room updateRoom(@RequestBody Room room, @PathVariable long id) {
+    	
     	Optional<Room> data = repo.findById(id);
     	Room rm = data.get();
     	
     	rm.setHotelName(room.getHotelName());
+    	rm.setImage(room.getImage());
     	rm.setRating(rm.getRating());
+    	rm.setDescription(room.getDescription());
+    	rm.setPrice(room.getPrice());
         rm.setIsBooked(rm.getIsBooked());
         
     	return repo.save(rm);
