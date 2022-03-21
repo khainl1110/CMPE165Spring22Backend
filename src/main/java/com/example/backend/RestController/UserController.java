@@ -5,6 +5,9 @@ import com.example.backend.Model.User;
 import com.example.backend.Repository.UserRepository;
 
 import java.util.*;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +19,13 @@ public class UserController {
 	
 	@Autowired
 	UserRepository repo;
+	
+	@PostConstruct
+	public void addUsers() {
+		// String firstName, String lastName, String email, String password
+		repo.save(new User("John", "Doe", "johndoe@gmail.com", "johndoe"));
+		repo.save(new User("Kenny", "Potter", "kenny@gmail.com", "password123"));
+	}
 	
 	@GetMapping("")
     public Iterable<User> getMapping() {
