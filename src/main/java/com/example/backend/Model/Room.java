@@ -12,6 +12,7 @@ public class Room {
 	
 	private String hotelName;
 	private String image;
+	private String location;
 	private double rating; //1-10 points with 10 is highest
 	private String description;
 	private int price;
@@ -21,14 +22,27 @@ public class Room {
 		
 	}
 	
-	public Room(String hotelName, String image, double rating, String description, int price, boolean isBooked) {
+	public Room(String hotelName, String image, String location, double rating, String description, int price, boolean isBooked) {
 		super();
 		this.hotelName = hotelName;
 		this.image = image;
+		this.location = location;
 		this.rating = rating;
 		this.description = description;
 		this.price = price;
 		this.isBooked = isBooked;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getHotelName() {
+		return hotelName;
+	}
+
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
 	}
 
 	public String getImage() {
@@ -37,6 +51,22 @@ public class Room {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public double getRating() {
+		return rating;
+	}
+
+	public void setRating(double rating) {
+		this.rating = rating;
 	}
 
 	public String getDescription() {
@@ -54,36 +84,20 @@ public class Room {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
-	public Long getID() {
-		return id;
-	}
-	
-	public boolean getIsBooked() {
+
+	public boolean isBooked() {
 		return isBooked;
 	}
-	
-	public String getHotelName() {
-		return hotelName;
+
+	public void setBooked(boolean isBooked) {
+		this.isBooked = isBooked;
+	}
+
+	public void toogleAvail() {
+		if(this.isBooked)
+			this.isBooked = false;
+		else this.isBooked = true;
 	}
 	
-	public double getRating() {
-		return rating;
-	}
 	
-	public void setIsBooked(boolean isBooked) {
-		this.isBooked = isBooked; //true = booked, false = canceled/completed
-	}
-	
-	public void toggleStatus() {
-		isBooked = !isBooked;
-	}
-	
-	public void setHotelName(String hotelName) {
-		this.hotelName = hotelName;
-	}
-	
-	public void setRating(double rating) {
-		this.rating = rating;
-	}
 }
