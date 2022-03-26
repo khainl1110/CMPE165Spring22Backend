@@ -42,14 +42,23 @@ public class RoomController {
 
     //get a room
     @GetMapping("/{id}")
-    public Room getReservation(@PathVariable long id) {
+    public Room getRoom(@PathVariable long id) {
     	Optional<Room> data = repo.findById(id);
     	return data.get();
     }
-
+    
     //Create a room
     @PostMapping()
-    public Room addReservation(@RequestBody Room room) {
+    public Room addRoom(@RequestBody Room room) {
+    	return repo.save(room);
+    }
+    
+    // toggle a room's availability
+    @GetMapping("/{id}/toggle")
+    public Room toggleRoom(@PathVariable long id) {
+    	Optional<Room> data = repo.findById(id);
+    	Room room = data.get();
+    	room.toogleAvail();
     	return repo.save(room);
     }
     
@@ -65,7 +74,7 @@ public class RoomController {
     	rm.setRating(rm.getRating());
     	rm.setDescription(room.getDescription());
     	rm.setPrice(room.getPrice());
-        rm.setIsBooked(rm.getIsBooked());
+        rm.setBooked(room.isBooked());
         
     	return repo.save(rm);
     }
