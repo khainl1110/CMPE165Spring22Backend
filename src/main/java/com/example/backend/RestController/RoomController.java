@@ -55,7 +55,7 @@ public class RoomController {
     
     // toggle a room's availability
     @GetMapping("/{id}/toggle")
-    public Room toggleRoom(@PathVariable long id) {
+    public Room toggleRoomAvail(@PathVariable long id) {
     	Optional<Room> data = repo.findById(id);
     	Room room = data.get();
     	room.toogleAvail();
