@@ -22,11 +22,11 @@ public class Room {
 		
 	}
 	
-	public Room(String hotelName, String image, String location, double rating, String description, int price, boolean isBooked) {
+	public Room(String hotelName, String location, String image, double rating, String description, int price, boolean isBooked) {
 		super();
 		this.hotelName = hotelName;
-		this.image = image;
 		this.location = location;
+		this.image = image;
 		this.rating = rating;
 		this.description = description;
 		this.price = price;
