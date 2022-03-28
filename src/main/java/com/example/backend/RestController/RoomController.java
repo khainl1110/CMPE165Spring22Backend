@@ -88,7 +88,7 @@ public class RoomController {
          return new Message("room has been deleted");
      }
      
-     @PostMapping("/fetch")
+     @GetMapping("/fetch")
      public List<Room> fetchRoom(@RequestBody Room room) {
     	 Iterable<Room> data = repo.findAll();
     	 List<Room> rooms = new ArrayList<>();
