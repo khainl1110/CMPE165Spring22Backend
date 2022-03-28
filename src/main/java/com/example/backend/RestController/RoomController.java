@@ -1,5 +1,7 @@
 package com.example.backend.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
@@ -84,5 +86,17 @@ public class RoomController {
      public Message updateReservation(@PathVariable long id) {
          repo.deleteById(id);
          return new Message("room has been deleted");
+     }
+     
+     @PostMapping("/fetch")
+     public List<Room> fetchRoom(@RequestBody Room room) {
+    	 Iterable<Room> data = repo.findAll();
+    	 List<Room> rooms = new ArrayList<>();
+    	 for (Room r : data) {
+    		 if (r.sameRoom(room)) {
+    			 rooms.add(r);
+    		 }
+    	 }
+    	 return rooms;
      }
 }
