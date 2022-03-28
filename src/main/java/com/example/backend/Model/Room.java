@@ -16,13 +16,14 @@ public class Room {
 	private double rating; //1-10 points with 10 is highest
 	private String description;
 	private int price;
+	private int numGuest;
 	private boolean isBooked;
 	
 	public Room() {
 		
 	}
 	
-	public Room(String hotelName, String location, String image, double rating, String description, int price, boolean isBooked) {
+	public Room(String hotelName, String location, String image, double rating, String description, int price, int numGuest, boolean isBooked) {
 		super();
 		this.hotelName = hotelName;
 		this.location = location;
@@ -31,6 +32,7 @@ public class Room {
 		this.description = description;
 		this.price = price;
 		this.isBooked = isBooked;
+		this.numGuest = numGuest;
 	}
 
 	public Long getId() {
@@ -63,6 +65,14 @@ public class Room {
 
 	public double getRating() {
 		return rating;
+	}
+	
+	public int getNumGuest() {
+		return numGuest;
+	}
+	
+	public void setNumGuest(int guests) {
+		numGuest = guests;
 	}
 
 	public void setRating(double rating) {
