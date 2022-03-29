@@ -88,10 +88,12 @@ public class RoomController {
          return new Message("room has been deleted");
      }
      
-     @GetMapping("/fetch")
-     public List<Room> fetchRoom(@RequestBody Room room) {
+     @GetMapping("/{location}/{numGuest}/{booked}")
+     public List<Room> fetchRoom(@PathVariable String location, @PathVariable int numGuest, @PathVariable boolean booked) {
     	 Iterable<Room> data = repo.findAll();
     	 List<Room> rooms = new ArrayList<>();
+    	 Room room = new Room(location, numGuest, booked);
+    	 
     	 for (Room r : data) {
     		 if (r.sameRoom(room)) {
     			 rooms.add(r);

@@ -12,18 +12,20 @@ public class Room {
 	
 	private String hotelName;
 	private String image;
-	private String location;
+	private String location; //area, city
 	private double rating; //1-10 points with 10 is highest
 	private String description;
 	private int price;
 	private int numGuest;
 	private boolean isBooked;
+	private String roomInfo;
+	private String amenities;
 	
 	public Room() {
 		
 	}
 	
-	public Room(String hotelName, String location, String image, double rating, String description, int price, int numGuest, boolean isBooked) {
+	public Room(String hotelName, String location, String image, double rating, String description, String amenities, String roomInfo, int price, int numGuest, boolean isBooked) {
 		super();
 		this.hotelName = hotelName;
 		this.location = location;
@@ -33,6 +35,8 @@ public class Room {
 		this.price = price;
 		this.isBooked = isBooked;
 		this.numGuest = numGuest;
+		this.roomInfo = roomInfo;
+		this.amenities = amenities;
 	}
 	
 	public Room(String location, int numGuest, boolean isBooked) {
@@ -114,15 +118,11 @@ public class Room {
 			this.isBooked = false;
 		else this.isBooked = true;
 	}
-	
-	private boolean compareBooked(Room room) {
-		return isBooked == room.isBooked();
-	}
-	
+		
 	public boolean sameRoom(Room room) {
-		if (compareBooked(room)
-				&& this.getNumGuest() == room.getNumGuest()
-				&& this.getLocation().equals(room.getLocation())) {
+		if (getNumGuest() == room.getNumGuest()
+				&& getLocation().toLowerCase().contains(room.getLocation().toLowerCase())
+				&& (isBooked == room.isBooked())) {
 			return true;
 		}
 		else {
