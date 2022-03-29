@@ -92,7 +92,7 @@ public class RoomController {
      public List<Room> fetchRoom(@PathVariable String location, @PathVariable int numGuest, @PathVariable boolean booked) {
     	 Iterable<Room> data = repo.findAll();
     	 List<Room> rooms = new ArrayList<>();
-    	 Room room = new Room(location, numGuest, booked);
+    	 Room room = new Room(location.replace('-', ' '), numGuest, booked); //replace hypens if there are any
     	 
     	 for (Room r : data) {
     		 if (r.sameRoom(room)) {

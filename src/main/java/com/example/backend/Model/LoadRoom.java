@@ -44,7 +44,7 @@ public class LoadRoom {
     	
     	room1 = new Room("Riu Plaza Fisherman's Wharf", "Fisherman's Wharf, San Francisco",
 				"https://t-cf.bstatic.com/xdata/images/hotel/square200/228751512.webp?k=67a0f2c6411b98fa3923a695f9510dcc1092e3c0f90b3feb7f9d1cd807100bb9&o=&s=1",
-				8.1, "description here", "amenities here", "Deluxe Queen Room with Two Queen Beds", 329, 5, false);
+				8.1, "description here", "amenities here", "Deluxe Queen Room with Two Queen Beds", 329, 5, true);
     	rooms.add(room1);
     	
     	room1 = new Room("Riu Plaza Fisherman's Wharf", "Fisherman's Wharf, San Francisco",
