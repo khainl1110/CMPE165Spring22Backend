@@ -69,4 +69,10 @@ public class ReservationController {
     public Iterable<Reservation> findByUsername(@RequestParam("userEmail") String username) {
     	return repo.findByUserEmail(username);
     }
+    
+    // test url
+    @GetMapping("/test")
+    public String testMethod(@RequestParam("whatever") String whatever) {
+    	return whatever;
+    }
 }
