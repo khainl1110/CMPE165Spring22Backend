@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
@@ -88,14 +89,14 @@ public class RoomController {
          return new Message("room has been deleted");
      }
      
-     @GetMapping("/{location}/{numGuest}/{booked}")
-     public List<Room> fetchRoom(@PathVariable String location, @PathVariable int numGuest, @PathVariable boolean booked) {
+     @GetMapping("/fetch")
+     public List<Room> fetchRoom(@RequestParam("locationName") String location, @RequestParam("numGuest") int numGuest, @RequestParam("isBooked") boolean booked) {
     	 Iterable<Room> data = repo.findAll();
     	 List<Room> rooms = new ArrayList<>();
-    	 Room room = new Room(location.replace('-', ' '), numGuest, booked); //replace hypens if there are any
+    	 Room room = new Room(location, numGuest, booked); //replace hypens if there are any
     	 
     	 for (Room r : data) {
-    		 if (r.sameRoom(room)) {
+    		 if (r.equals(room)) {
     			 rooms.add(r);
     		 }
     	 }

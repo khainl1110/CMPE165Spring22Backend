@@ -119,7 +119,8 @@ public class Room {
 		else this.isBooked = true;
 	}
 		
-	public boolean sameRoom(Room room) {
+	//Tests if the room is equal
+	public boolean equals(Room room) {
 		if (getNumGuest() == room.getNumGuest()
 				&& getLocation().toLowerCase().contains(room.getLocation().toLowerCase())
 				&& (isBooked == room.isBooked())) {
