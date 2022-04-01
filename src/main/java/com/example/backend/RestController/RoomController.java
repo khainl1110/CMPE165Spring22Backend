@@ -1,5 +1,7 @@
 package com.example.backend.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
@@ -75,6 +78,10 @@ public class RoomController {
     	rm.setDescription(room.getDescription());
     	rm.setPrice(room.getPrice());
         rm.setBooked(room.isBooked());
+        rm.setNumGuest(room.getNumGuest());
+        rm.setLocation(room.getLocation());
+        rm.setAmenities(room.getAmenities());
+        rm.setRoomInfo(room.getRoomInfo());
         
     	return repo.save(rm);
     }
@@ -84,5 +91,19 @@ public class RoomController {
      public Message updateReservation(@PathVariable long id) {
          repo.deleteById(id);
          return new Message("room has been deleted");
+     }
+     
+     @GetMapping("/fetch")
+     public List<Room> fetchRoom(@RequestParam("locationName") String location, @RequestParam("numGuest") int numGuest, @RequestParam("isBooked") boolean booked) {
+    	 Iterable<Room> data = repo.findAll();
+    	 List<Room> rooms = new ArrayList<>();
+    	 Room room = new Room(location, numGuest, booked); //replace hypens if there are any
+    	 
+    	 for (Room r : data) {
+    		 if (r.equals(room)) {
+    			 rooms.add(r);
+    		 }
+    	 }
+    	 return rooms;
      }
 }

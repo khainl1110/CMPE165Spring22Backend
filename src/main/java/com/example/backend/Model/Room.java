@@ -12,17 +12,20 @@ public class Room {
 	
 	private String hotelName;
 	private String image;
-	private String location;
+	private String location; //area, city
 	private double rating; //1-10 points with 10 is highest
 	private String description;
 	private int price;
+	private int numGuest;
 	private boolean isBooked;
+	private String roomInfo;
+	private String amenities;
 	
 	public Room() {
 		
 	}
 	
-	public Room(String hotelName, String location, String image, double rating, String description, int price, boolean isBooked) {
+	public Room(String hotelName, String location, String image, double rating, String description, String amenities, String roomInfo, int price, int numGuest, boolean isBooked) {
 		super();
 		this.hotelName = hotelName;
 		this.location = location;
@@ -30,6 +33,15 @@ public class Room {
 		this.rating = rating;
 		this.description = description;
 		this.price = price;
+		this.isBooked = isBooked;
+		this.numGuest = numGuest;
+		this.roomInfo = roomInfo;
+		this.amenities = amenities;
+	}
+	
+	public Room(String location, int numGuest, boolean isBooked) {
+		this.location = location;
+		this.numGuest = numGuest;
 		this.isBooked = isBooked;
 	}
 
@@ -64,6 +76,14 @@ public class Room {
 	public double getRating() {
 		return rating;
 	}
+	
+	public int getNumGuest() {
+		return numGuest;
+	}
+	
+	public void setNumGuest(int guests) {
+		numGuest = guests;
+	}
 
 	public void setRating(double rating) {
 		this.rating = rating;
@@ -92,12 +112,38 @@ public class Room {
 	public void setBooked(boolean isBooked) {
 		this.isBooked = isBooked;
 	}
+	
+	public String getAmenities() {
+		return amenities;
+	}
+	
+	public void setAmenities(String amenities) {
+		this.amenities = amenities;
+	}
+	
+	public String getRoomInfo() {
+		return roomInfo;
+	}
+	
+	public void setRoomInfo(String roomInfo) {
+		this.roomInfo = roomInfo;
+	}
 
 	public void toogleAvail() {
 		if(this.isBooked)
 			this.isBooked = false;
 		else this.isBooked = true;
 	}
-	
-	
+		
+	//Tests if the room is equal
+	public boolean equals(Room room) {
+		if (getNumGuest() == room.getNumGuest()
+				&& getLocation().toLowerCase().contains(room.getLocation().toLowerCase())
+				&& (isBooked == room.isBooked())) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
