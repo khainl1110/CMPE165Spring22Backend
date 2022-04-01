@@ -39,10 +39,9 @@ public class Room {
 		this.amenities = amenities;
 	}
 	
-	public Room(String location, int numGuest, boolean isBooked) {
+	public Room(String location, int numGuest) {
 		this.location = location;
 		this.numGuest = numGuest;
-		this.isBooked = isBooked;
 	}
 
 	public Long getId() {
@@ -135,11 +134,11 @@ public class Room {
 		else this.isBooked = true;
 	}
 		
-	//Tests if the room is equal
-	public boolean equals(Room room) {
+	// checks whether the room matches the booking criteria
+	public boolean isMatchedBookingCriterias(Room room) {
 		if (getNumGuest() == room.getNumGuest()
 				&& getLocation().toLowerCase().contains(room.getLocation().toLowerCase())
-				&& (isBooked == room.isBooked())) {
+				&& isBooked == false) {
 			return true;
 		}
 		else {

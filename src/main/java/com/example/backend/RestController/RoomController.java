@@ -93,14 +93,14 @@ public class RoomController {
          return new Message("room has been deleted");
      }
      
-     @GetMapping("/fetch")
-     public List<Room> fetchRoom(@RequestParam("locationName") String location, @RequestParam("numGuest") int numGuest, @RequestParam("isBooked") boolean booked) {
+     @GetMapping("/search")
+     public List<Room> fetchRoom(@RequestParam("location") String location, @RequestParam("numGuest") int numGuest) {
     	 Iterable<Room> data = repo.findAll();
     	 List<Room> rooms = new ArrayList<>();
-    	 Room room = new Room(location, numGuest, booked); //replace hypens if there are any
+    	 Room room = new Room(location, numGuest); //replace hypens if there are any
     	 
     	 for (Room r : data) {
-    		 if (r.equals(room)) {
+    		 if (r.isMatchedBookingCriterias(room)) {
     			 rooms.add(r);
     		 }
     	 }
