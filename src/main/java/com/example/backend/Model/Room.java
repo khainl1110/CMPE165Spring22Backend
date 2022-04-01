@@ -33,6 +33,10 @@ public class Room {
 		this.isBooked = isBooked;
 	}
 
+	public Room(long parseLong, String string, String string2, String string3, String string4, String string5,
+			boolean parseBoolean) {
+	}
+
 	public Long getId() {
 		return id;
 	}
