@@ -112,6 +112,22 @@ public class Room {
 	public void setBooked(boolean isBooked) {
 		this.isBooked = isBooked;
 	}
+	
+	public String getAmenities() {
+		return amenities;
+	}
+	
+	public void setAmenities(String amenities) {
+		this.amenities = amenities;
+	}
+	
+	public String getRoomInfo() {
+		return roomInfo;
+	}
+	
+	public void setRoomInfo(String roomInfo) {
+		this.roomInfo = roomInfo;
+	}
 
 	public void toogleAvail() {
 		if(this.isBooked)

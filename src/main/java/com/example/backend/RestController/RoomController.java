@@ -78,6 +78,10 @@ public class RoomController {
     	rm.setDescription(room.getDescription());
     	rm.setPrice(room.getPrice());
         rm.setBooked(room.isBooked());
+        rm.setNumGuest(room.getNumGuest());
+        rm.setLocation(room.getLocation());
+        rm.setAmenities(room.getAmenities());
+        rm.setRoomInfo(room.getRoomInfo());
         
     	return repo.save(rm);
     }
