@@ -18,6 +18,7 @@ public class cvsDataStore {
     //save(MultipartFile): store CVS data to database
     public void save(MultipartFile file) {
         try {
+        	// get all the rooms and save
             List<Room> rooms = cvsReader.cvsRooms(file.getInputStream());
             repository.saveAll(rooms);
         } catch (IOException e) {

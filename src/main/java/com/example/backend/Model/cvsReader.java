@@ -23,6 +23,19 @@ public class cvsReader {
         return true;
     }
 
+    // read and return all the rooms in the input stream?
+    /*
+     * Room attribute
+     * this.hotelName = hotelName;
+		this.location = location;
+		this.image = image;
+		this.rating = rating;
+		this.description = description;
+		this.price = price;
+		this.isBooked = isBooked;
+		
+		Room(String hotelName, String location, String image, double rating, String description, int price, boolean isBooked) 
+     */
     public static List<Room> csvRoom(InputStream is) {
         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
                 CSVParser csvParser = new CSVParser(fileReader,
@@ -30,9 +43,9 @@ public class cvsReader {
             List<Room> rooms = new ArrayList<Room>();
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
             for (CSVRecord csvRecord : csvRecords) {
-                Room room = new Room(Long.parseLong(csvRecord.get("id")), csvRecord.get("hotelName"),
-                        csvRecord.get("image"), csvRecord.get("location"), csvRecord.get("description"),
-                        csvRecord.get("price"), Boolean.parseBoolean(csvRecord.get("isBooked")));
+                Room room = new Room(csvRecord.get("Title"),
+                        csvRecord.get("Address"), csvRecord.get("Image"), Double.parseDouble( csvRecord.get("rating") ),
+                        csvRecord.get("Description"), Integer.parseInt(csvRecord.get("price")),false );
                 rooms.add(room);
             }
             return rooms;
