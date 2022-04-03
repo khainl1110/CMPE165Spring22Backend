@@ -14,7 +14,13 @@ import com.example.backend.Repository.RoomRepository;
 public class ReadCSVRoom {
 	private ArrayList<Room> rooms = new ArrayList<>();
 	
-	public ReadCSVRoom() throws Exception {
+	public ReadCSVRoom() {
+		
+       
+    	
+	}
+	
+	public ArrayList<Room> getRooms() throws Exception{
 		String file = new File("./src/main/java/com/example/backend/Model/SF_4Adults - Copy.csv").getCanonicalPath();
 
         BufferedReader br = new BufferedReader(new FileReader(file));
@@ -84,11 +90,6 @@ public class ReadCSVRoom {
         //     System.out.println();
         // }
         
-       
-    	
-	}
-	
-	public ArrayList<Room> getRooms() {
 		return rooms;
 	}
 
