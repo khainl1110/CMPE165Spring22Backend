@@ -35,19 +35,19 @@ public class readFile {
 //        	
 //        	Room room = new Room(hotelName, location, image, rating, description, price, isBooked);
 //        	rooms.add(room);
-        }
-            
-        for (int i = 0; i < rooms.size(); i++) {
-        	System.out.println( rooms.get(i) );
-        }
+//        }
+//            
+//        for (int i = 0; i < rooms.size(); i++) {
+//        	System.out.println( rooms.get(i) );
+//        }
         // while ( (st = br.readLine()) != null) {
 
         //     System.out.println(st);
         //     System.out.println();
         // }
         
-       
-    }
-}
+
+//    }
+//}
 	 */
 }
