@@ -21,7 +21,7 @@ public class ReadCSVRoom {
 	}
 	
 	public ArrayList<Room> getRooms() throws Exception{
-		String file = new File("./src/main/java/com/example/backend/Model/SF_4Adults - Copy.csv").getCanonicalPath();
+		String file = new File("./src/main/java/com/example/backend/Model/SF_4Adults.csv").getCanonicalPath();
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -45,29 +45,33 @@ public class ReadCSVRoom {
 	        String[] split = str.split(",");
 
 	
-	        //System.out.println(split.length + " " + split[0]);
+	        //System.out.println(split.length + " " + split[0] + " " + split[split.length-1]);
 	       	String hotelName = split[0];
-	       	String location = split[2];
+	       	String location = split[3] + ", San Francisco";
 	       	String image = split[1];
-	       	double rating = 9.8;
+	       	// need to check if there's no rating
+	       	double rating = 9.0;
+	       	if (split[6].length() > 1)
+	       		rating = Double.parseDouble( split[6] );
+	       	
 	       	// sometimes don't have split 14
 	       	String description = "hotel description";
-	       	if (split.length > 14)
-	       		description = split[14];
+	       	if (split.length > 15)
+	       		description = split[15];
 	       	
 	       	// amenities is add_info1
-	       	String amenities = split[7] + " " + split[8] + " " + split[9];
+	       	String amenities = split[8] + " " + split[9] + " " + split[10] + " " + split[11];
 	       	
-	       	// sometimes don't have split 13
+	       	// sometimes don't have split 14
 	       	String roomInfo = "This is room info";
-	       	if (split.length > 13)
-	       		roomInfo = split[13];
+	       	if (split.length > 14)
+	       		roomInfo = split[14];
 	       
 	       	// first need to check whether the length is more than 0
 	       	int price = 101;
-	       	if (split[11].length() > 0) {
+	       	if (split[12].length() > 0) {
 	       		// need to remove space after it
-		       	price = Integer.parseInt( split[11].substring(1, split[11].length()-1) );
+		       	price = Integer.parseInt( split[12].substring(1, split[12].length()-1) );
 	       	}
 	       	
 	       	int numGuest = 4;
@@ -77,13 +81,13 @@ public class ReadCSVRoom {
 	       			description, amenities, roomInfo,
 	       			price, numGuest,isBooked);
 	       	rooms.add(room);
-
+	        
             
     	}
-        System.out.println("After reading " + rooms.size());
-        for (int i = 0; i < rooms.size(); i++) {
-        	System.out.println( rooms.get(i) );
-        }
+        
+//        for (int i = 0; i < rooms.size(); i++) {
+//        	System.out.println( rooms.get(i) );
+//        }
         // while ( (st = br.readLine()) != null) {
 
         //     System.out.println(st);
