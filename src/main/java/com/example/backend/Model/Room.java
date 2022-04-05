@@ -145,4 +145,11 @@ public class Room {
 			return false;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return "Room [hotelName=" + hotelName + ", image=" + image + ", location=" + location + ", rating=" + rating
+				+ ", description=" + description + ", price=" + price + ", numGuest=" + numGuest + ", isBooked="
+				+ isBooked + ", roomInfo=" + roomInfo + ", amenities=" + amenities + "]";
+	}
 }

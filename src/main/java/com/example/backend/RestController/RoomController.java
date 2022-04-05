@@ -8,6 +8,8 @@ import javax.annotation.PostConstruct;
 
 import com.example.backend.Model.LoadRoom;
 import com.example.backend.Model.Message;
+import com.example.backend.Model.ReadCSVRoom;
+import com.example.backend.Model.ReadCSVRoom1;
 import com.example.backend.Model.Room;
 import com.example.backend.Repository.RoomRepository;
 
@@ -31,9 +33,18 @@ public class RoomController {
     @Autowired RoomRepository repo;
 
     @PostConstruct
-    private void loadRoom() {
-    	LoadRoom loadRoom = new LoadRoom();
-    	repo.saveAll(LoadRoom.getRooms());
+    private void loadRoom() throws Exception {
+
+    	ReadCSVRoom csvRoom = new ReadCSVRoom();
+    	ArrayList<Room> rooms = csvRoom.getRooms();
+    	repo.saveAll(rooms);
+    	
+    	
+    	ReadCSVRoom1 csvRoom1 = new ReadCSVRoom1();
+    	repo.saveAll( csvRoom1.getRooms() );
+    	
+    	System.out.println("After init, length is " + repo.count());
+  
     }
     
     
