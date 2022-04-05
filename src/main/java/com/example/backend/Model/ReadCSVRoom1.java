@@ -2,19 +2,13 @@ package com.example.backend.Model;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.example.backend.Repository.RoomRepository;
-
-public class ReadCSVRoom {
-	private ArrayList<Room> rooms = new ArrayList<>();
+public class ReadCSVRoom1 {
+private ArrayList<Room> rooms = new ArrayList<>();
 	
-	public ReadCSVRoom() {
+	public ReadCSVRoom1() {
 		
        
     	
@@ -22,9 +16,9 @@ public class ReadCSVRoom {
 	
 	public ArrayList<Room> getRooms() throws Exception{
 		
-		String file = new File("./src/main/java/com/example/backend/Model/SF_4Adults.csv").getCanonicalPath();
+		String file = new File("./src/main/java/com/example/backend/Model/SF_2Adults.csv").getCanonicalPath();
 
-        BufferedReader br = new BufferedReader(new FileReader(file));
+		BufferedReader br = new BufferedReader(new FileReader(file));
 
         String st;
         
@@ -55,13 +49,25 @@ public class ReadCSVRoom {
 	       	if (split[6].length() > 1)
 	       		rating = Double.parseDouble( split[6] );
 	       	
-	       	// sometimes don't have split 14
+	       	// sometimes don't have split 
 	       	String description = "hotel description";
-	       	if (split.length > 15)
-	       		description = split[15];
+	       	if (split.length > 13)
+	       		description = split[13];
 	       	
-	       	// amenities is add_info1
-	       	String amenities = split[8] + " " + split[9] + " " + split[10] + " " + split[11];
+	       	// amenities 
+	       	StringBuilder sb = new StringBuilder();
+	       	sb.append(split[8]);
+	       	
+	       	if (split.length > 9)
+	       		sb.append( split[9] );
+	       	
+	       	if (split.length > 10)
+	       		sb.append( split[10] );
+	       	
+	       	if (split.length > 11)
+	       		sb.append( split[11] );
+	       	
+	       	String amenities = sb.toString();
 	       	
 	       	// sometimes don't have split 14
 	       	String roomInfo = "This is room info";
@@ -70,12 +76,13 @@ public class ReadCSVRoom {
 	       
 	       	// first need to check whether the length is more than 0
 	       	int price = 101;
-	       	if (split[12].length() > 0) {
+	       	
+	       	if (split.length > 12 && split[12].length() > 0) {
 	       		// need to remove space after it
 		       	price = Integer.parseInt( split[12].substring(1, split[12].length()-1) );
 	       	}
 	       	
-	       	int numGuest = 4;
+	       	int numGuest = 2;
 	       	boolean isBooked = false;
 	       	
 	       	Room room = new Room(hotelName, location, image, rating, 
@@ -97,5 +104,6 @@ public class ReadCSVRoom {
         
 		return rooms;
 	}
+
 
 }

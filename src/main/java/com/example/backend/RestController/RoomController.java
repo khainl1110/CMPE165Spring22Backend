@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import com.example.backend.Model.LoadRoom;
 import com.example.backend.Model.Message;
 import com.example.backend.Model.ReadCSVRoom;
+import com.example.backend.Model.ReadCSVRoom1;
 import com.example.backend.Model.Room;
 import com.example.backend.Repository.RoomRepository;
 
@@ -33,14 +34,14 @@ public class RoomController {
 
     @PostConstruct
     private void loadRoom() throws Exception {
-    	//LoadRoom loadRoom = new LoadRoom();
+
     	ReadCSVRoom csvRoom = new ReadCSVRoom();
     	ArrayList<Room> rooms = csvRoom.getRooms();
-    	System.out.println("test " + rooms.size());
-    	repo.saveAll(csvRoom.getRooms());
+    	repo.saveAll(rooms);
     	
-    	LoadRoom loadRoom = new LoadRoom();
-    	repo.saveAll(LoadRoom.getRooms());
+    	
+    	ReadCSVRoom1 csvRoom1 = new ReadCSVRoom1();
+    	repo.saveAll( csvRoom1.getRooms() );
     	
     	System.out.println("After init, length is " + repo.count());
   
