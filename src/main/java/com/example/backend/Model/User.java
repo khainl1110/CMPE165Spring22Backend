@@ -12,6 +12,8 @@ public class User {
     private String lastName;
     private String password;
     private int points;
+    private long paymentId;
+    
     @Id
     private String email;
 
@@ -19,12 +21,12 @@ public class User {
 
     }
 
-    public User(String firstName, String lastName, String email, String password, int points) {
+    public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-        this.points = points;
+        this.points = 0;
     }
 
     public String getPassword() {
@@ -45,6 +47,10 @@ public class User {
     
     public int getPoints() {
     	return points;
+    }
+    
+    public long getPaymentId() {
+    	return paymentId;
     }
     
     public void setPassword(String password) {
@@ -73,5 +79,9 @@ public class User {
     
     public void subtractPoints(int points) {
     	this.points -= points;
+    }
+    
+    public void setPaymentId(long paymentId) {
+    	this.paymentId = paymentId;
     }
 }
