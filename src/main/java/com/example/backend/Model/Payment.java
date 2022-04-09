@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Entity
 public class Payment {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	private long payment_id;
+	private long id;
 	
 	private String name;
 	private String number;
@@ -27,6 +27,11 @@ public class Payment {
 		this.expiration = expiration;
 	}
 	
+	// need this so JPA can automatically create id
+	public long getId() {
+		return id;
+	}
+		
 	public String getName() {
 		return name;
 	}

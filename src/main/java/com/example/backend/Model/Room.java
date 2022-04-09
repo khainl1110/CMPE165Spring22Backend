@@ -25,6 +25,11 @@ public class Room {
 		
 	}
 	
+	public Room(String location, int numGuest) {
+		this.location = location;
+		this.numGuest = numGuest;
+	}
+	
 	public Room(String hotelName, String location, String image, double rating, String description, String amenities, String roomInfo, int price, int numGuest, boolean isBooked) {
 		super();
 		this.hotelName = hotelName;
@@ -37,11 +42,6 @@ public class Room {
 		this.numGuest = numGuest;
 		this.roomInfo = roomInfo;
 		this.amenities = amenities;
-	}
-	
-	public Room(String location, int numGuest) {
-		this.location = location;
-		this.numGuest = numGuest;
 	}
 
 	public Long getId() {
