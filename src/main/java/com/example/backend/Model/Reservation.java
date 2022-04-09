@@ -12,15 +12,23 @@ public class Reservation {
 	private long id;
 	private long roomId; //point to room
 	private String userEmail; // point to user's email
+	private long paymentId;
 
 	public Reservation() {
 		
 	}
 	
-
+	// api v1
 	public Reservation(String email, long id) {
 		userEmail = email;
 		roomId = id;
+	}
+	
+	// api v2
+	public Reservation(String email, long id, long payment_id) {
+		userEmail = email;
+		roomId = id;
+		this.paymentId = payment_id;
 	}
 	
 	// need this so JPA can automatically create id
@@ -34,6 +42,14 @@ public class Reservation {
 	
 	public long getRoomId() {
 		return roomId;
+	}
+	
+	public long getPaymentID() {
+		return paymentId;
+	}
+	
+	public void setPaymentID(long paymentId) {
+		this.paymentId = paymentId;
 	}
 	
 	public void setUserEmail(String email) {
