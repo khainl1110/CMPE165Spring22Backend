@@ -11,51 +11,51 @@ public class Payment {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private long payment_id;
 	
-	private String customerName;
-	private String cardNum;
+	private String name;
+	private String number;
 	private int cvcCode;
-	private LocalDate expiration;
+	private String expiration;
 	
 	public Payment() {
 		
 	}
 	
-	public Payment(String customerName, String cardNum, int cvcCode, LocalDate expiration) {
-		this.customerName = customerName;
-		this.cardNum = cardNum;
+	public Payment(String name, String number, int cvcCode, String expiration) {
+		this.name = name;
+		this.number = number;
 		this.cvcCode = cvcCode;
 		this.expiration = expiration;
 	}
 	
-	public String getCustomer() {
-		return customerName;
+	public String getName() {
+		return name;
 	}
 	
-	public String getCardNum() {
-		return cardNum;
+	public String getNumber() {
+		return number;
 	}
 	
 	public int getCode() {
 		return cvcCode;
 	}
 	
-	public LocalDate getExpiration() {
+	public String getExpiration() {
 		return expiration;
 	}
 	
-	public void setCustomer(String customerName) {
-		this.customerName = customerName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
-	public void setCardNum(String cardNum) {
-		this.cardNum = cardNum;
+	public void setNumber(String number) {
+		this.number = number;
 	}
 	
 	public void setCode(int cvcCode) {
 		this.cvcCode = cvcCode;
 	}
 	
-	public void setExpiration(LocalDate expiration) {
+	public void setExpiration(String expiration) {
 		this.expiration = expiration;
 	}
 }

@@ -18,7 +18,13 @@ public class Reservation {
 		
 	}
 	
-
+	// api v1
+	public Reservation(String email, long id) {
+		userEmail = email;
+		roomId = id;
+	}
+	
+	// api v2
 	public Reservation(String email, long id, long payment_id) {
 		userEmail = email;
 		roomId = id;
