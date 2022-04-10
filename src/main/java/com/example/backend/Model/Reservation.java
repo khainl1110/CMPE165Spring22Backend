@@ -37,12 +37,11 @@ public class Reservation {
 	
 	
 
-	public Reservation(long id, long roomId, String userEmail, long paymentId, double price, String check_in,
+	public Reservation(String email, long roomId, long paymentId, double price, String check_in,
 			String check_out, int numGuest) {
-		super();
-		this.id = id;
-		this.roomId = roomId;
+		
 		this.userEmail = userEmail;
+		this.roomId = roomId;
 		this.paymentId = paymentId;
 		this.price = price;
 		this.check_in = check_in;
