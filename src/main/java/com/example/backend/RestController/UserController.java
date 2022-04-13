@@ -1,5 +1,6 @@
 package com.example.backend.RestController;
 
+import com.example.backend.PassWordHashing;
 import com.example.backend.Model.Message;
 import com.example.backend.Model.Payment;
 import com.example.backend.Model.User;
@@ -39,8 +40,9 @@ public class UserController {
 
 	// create new user
     @PostMapping()
-    public User registerUser(@RequestBody User user) {
-    	return repo.save(user);
+    public User registerUser(@RequestBody User newUser) {
+		newUser.setPassword(PassWordHashing.hash(newUser.getPassword()));
+    	return repo.save(newUser);
     	
     }
     
