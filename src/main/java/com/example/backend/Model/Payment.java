@@ -32,16 +32,20 @@ public class Payment {
 		return id;
 	}
 		
+	public int getCvcCode() {
+		return cvcCode;
+	}
+
+	public void setCvcCode(int cvcCode) {
+		this.cvcCode = cvcCode;
+	}
+
 	public String getName() {
 		return name;
 	}
 	
 	public String getNumber() {
 		return number;
-	}
-	
-	public int getCode() {
-		return cvcCode;
 	}
 	
 	public String getExpiration() {
@@ -55,11 +59,6 @@ public class Payment {
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	
-	public void setCode(int cvcCode) {
-		this.cvcCode = cvcCode;
-	}
-	
 	public void setExpiration(String expiration) {
 		this.expiration = expiration;
 	}

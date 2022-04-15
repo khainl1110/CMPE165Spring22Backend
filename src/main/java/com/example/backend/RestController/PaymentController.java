@@ -2,12 +2,14 @@ package com.example.backend.RestController;
 
 import java.util.Optional;
 
+import com.example.backend.Model.Message;
 import com.example.backend.Model.Payment;
 import com.example.backend.Model.Reservation;
 import com.example.backend.Repository.PaymentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,4 +43,10 @@ public class PaymentController {
     	return repo.save(payment);
     }
     
+    // Delete a payment
+    @DeleteMapping("/{id}")
+    public Message updateReservation(@PathVariable long id) {
+    	repo.deleteById(id);
+    	return new Message("Reservation delete");
+    }
 }
