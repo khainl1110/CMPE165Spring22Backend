@@ -57,6 +57,7 @@ public class ReservationController {
     	reser.setPaymentId(reservation.getPaymentId());
     	reser.setPrice(reservation.getPrice());
     	reser.setCheck_in(reservation.getCheck_in());
+    	reser.setCheck_out(reservation.getCheck_out());
     	reser.setNumGuest(reservation.getNumGuest());
     	
     	return repo.save(reser);
