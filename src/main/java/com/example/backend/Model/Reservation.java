@@ -37,7 +37,7 @@ public class Reservation {
 	
 	
 
-	public Reservation(String email, long roomId, long paymentId, double price, String check_in,
+	public Reservation(String userEmail, long roomId, long paymentId, double price, String check_in,
 			String check_out, int numGuest) {
 		
 		this.userEmail = userEmail;
