@@ -51,8 +51,14 @@ public class ReservationController {
     public Reservation updateReservation(@RequestBody Reservation reservation, @PathVariable long id) {
     	Optional<Reservation> data = repo.findById(id);
     	Reservation reser = data.get();
+    	
     	reser.setUserEmail(reservation.getUserEmail());
     	reser.setRoomId(reservation.getRoomId());
+    	reser.setPaymentId(reservation.getPaymentId());
+    	reser.setPrice(reservation.getPrice());
+    	reser.setCheck_in(reservation.getCheck_in());
+    	reser.setCheck_out(reservation.getCheck_out());
+    	reser.setNumGuest(reservation.getNumGuest());
     	
     	return repo.save(reser);
     }

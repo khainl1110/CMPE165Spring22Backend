@@ -46,13 +46,16 @@ public class UserController {
     
     // update existing user
     @PutMapping()
-    public User updateRegister(@RequestBody User updatedUser) {
+    public User updateUser(@RequestBody User updatedUser) {
     	Optional<User> data = repo.findById(updatedUser.getEmail());
     	
     	User user = data.get();
+
     	user.setFirstName(updatedUser.getFirstName());
     	user.setLastName(updatedUser.getLastName());
     	user.setPassword(updatedUser.getPassword());
+    	user.setPoints(updatedUser.getPoints());
+    	user.setPaymentId(updatedUser.getPaymentId());
     	
     	return repo.save(user);
     }
