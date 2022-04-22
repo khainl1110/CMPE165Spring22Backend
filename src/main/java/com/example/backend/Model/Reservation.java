@@ -18,6 +18,10 @@ public class Reservation {
 	private String check_in;
 	private String check_out;
 	private int numGuest;
+	
+	private String firstName;
+	private String lastName;
+	private int pointsRedeemed;
 
 
 	public Reservation() {
@@ -36,7 +40,6 @@ public class Reservation {
 	}
 	
 	
-
 	public Reservation(String userEmail, long roomId, long paymentId, double price, String check_in,
 			String check_out, int numGuest) {
 		
@@ -48,6 +51,23 @@ public class Reservation {
 		this.check_out = check_out;
 		this.numGuest = numGuest;
 	}
+
+	public Reservation(String userEmail, long roomId, long paymentId, double price, String check_in,
+			String check_out, int numGuest,String firstName, String lastName, int pointsRedeemed) {
+		
+		this.userEmail = userEmail;
+		this.roomId = roomId;
+		this.paymentId = paymentId;
+		this.price = price;
+		this.check_in = check_in;
+		this.check_out = check_out;
+		this.numGuest = numGuest;
+		this.firstName = firstName;
+		this.lastName=lastName;
+		this.pointsRedeemed=pointsRedeemed;
+	}
+
+	
 
 	// need this so JPA can automatically create id
 	public long getId() {
@@ -74,7 +94,18 @@ public class Reservation {
 		return price;
 	}
 
+	public String getFirstName(){
+		return firstName;
+	}
 
+	public String getLastName(){
+		return lastName;
+	}
+
+	public int getPointsRedeemed(){
+		return pointsRedeemed;
+	}
+	
 	public void setPrice(double price) {
 		this.price = price;
 	}
@@ -104,7 +135,6 @@ public class Reservation {
 		return numGuest;
 	}
 
-
 	public void setNumGuest(int numGuest) {
 		this.numGuest = numGuest;
 	}
@@ -123,5 +153,17 @@ public class Reservation {
 
 	public void setRoomId(long roomId) {
 		this.roomId = roomId;
+	}
+
+	public void setFirstName(String firstName){
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName){
+		this.lastName = lastName;
+	}
+	
+	public void setPointsRedeemed(int pointsRedeemed){
+		this.pointsRedeemed = pointsRedeemed;
 	}
 }
