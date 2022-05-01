@@ -59,7 +59,10 @@ public class ReservationController {
     	reser.setCheck_in(reservation.getCheck_in());
     	reser.setCheck_out(reservation.getCheck_out());
     	reser.setNumGuest(reservation.getNumGuest());
-    	
+    	reser.setFirstName(reservation.getFirstName());
+        reser.setLastName(reservation.getLastName());
+        reser.setPointsRedeemed(reservation.getPointsRedeemed());
+
     	return repo.save(reser);
     }
     
